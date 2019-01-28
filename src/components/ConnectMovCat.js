@@ -21,14 +21,14 @@ class ConnectMovCat extends Component {
     }
 
     onBtnAddClick = () => {
-        var namaMovie = this.refs.namaMovieAdd.value;
-        var namaCat = this.refs.namaCatAdd.value;
+        var nama_movie = this.refs.namaMovieAdd.value;
+        var nama_category = this.refs.namaCatAdd.value;
 
-        if (namaMovie === '' || namaCat === '') {
+        if (nama_movie === '' || nama_category === '') {
             window.alert('Semua kolom harus diisi')
         } else {
             axios.post('http://localhost:2019/addmovcat', {
-                namaMovie, namaCat
+                nama_movie, nama_category
             }).then((res) => {
                 this.getMovCatList();
             }).catch((err) => {
@@ -52,28 +52,28 @@ class ConnectMovCat extends Component {
     }
 
     getNamaMovie = () => {
-        var nama_Movie = this.state.listMovCat.map(({ namaMovie }) => {
+        var namaMovie = this.state.listMovCat.map(({ nama_movie }) => {
             return (
-                <option>{namaMovie}</option>
+                <option>{nama_movie}</option>
             )
         })
-        return nama_Movie
+        return namaMovie
     }
     getNamaCategory = () => {
-        var nama_category = this.state.listMovCat.map(({ namaCat }) => {
+        var namaCategory = this.state.listMovCat.map(({ nama_category }) => {
             return (
-                <option>{namaCat}</option>
+                <option>{nama_category}</option>
             )
         })
-        return nama_category
+        return namaCategory
     }
 
     renderBodyMovCat = () => {
-        var listJSXMovCat = this.state.listMovCat.map(({ idmovie, namaMovie, namaCat }) => {
+        var listJSXMovCat = this.state.listMovCat.map(({ idmovie, nama_movie, nama_category }) => {
             return (
                 <tr>
-                    <td>{namaMovie}</td>
-                    <td>{namaCat}</td>
+                    <td>{nama_movie}</td>
+                    <td>{nama_category}</td>
                     <td><input className="btn btn-danger" type="button" value="Delete" onClick={() => this.onBtnDeleteClick(idmovie)} /></td>
                 </tr>
             )
